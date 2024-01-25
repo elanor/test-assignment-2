@@ -1,0 +1,23 @@
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+      - "5002:5000"
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    environment:
+      - NODE_ENV=development
+  database-service:
+    image: postgres:latest
+    container_name: database-service
+    environment:
+      POSTGRES_USER: melajus
+      POSTGRES_PASSWORD: test123
+      POSTGRES_DB: testdatabase2
+    ports:
+      - "5433:5432"
+
+volumes:
+  postgres_data: {}
